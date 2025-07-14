@@ -1,0 +1,43 @@
+<h2>Attendance Dashboard</h2>
+
+<form method="get">
+  <label for="date">Filter by date:</label>
+  <input type="date" id="date" name="date" value="{{ request.GET.date }}">
+  <button type="submit">Search</button>
+</form>
+
+<h3>Total Check-ins Per User</h3>
+<table border="1">
+  <tr>
+    <th>User</th>
+    <th>Total Check-ins</th>
+  </tr>
+  {% for user, count in user_checkins.items %}
+  <tr>
+    <td>{{ user }}</td>
+    <td>{{ count }}</td>
+  </tr>
+  {% empty %}
+  <tr>
+    <td colspan="2">No users found.</td>
+  </tr>
+  {% endfor %}
+</table>
+
+<h3>Attendance Records{% if request.GET.date %} for {{ request.GET.date }}{% endif %}</h3>
+<table border="1">
+  <tr>
+    <th>User</th>
+    <th>Date</th>
+  </tr>
+  {% for record in records %}
+  <tr>
+    <td>{{ record.user.username }}</td>
+    <td>{{ record.timestamp }}</td>
+  </tr>
+  {% empty %}
+  <tr>
+    <td colspan="2">No records found.</td>
+  </tr>
+  {% endfor %}
+</table>

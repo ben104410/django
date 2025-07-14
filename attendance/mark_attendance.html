@@ -1,0 +1,9 @@
+<!-- This file is not used if you render 'attendance/mark_attendance.html' from your view.
+   Make sure your template is at: attendance/templates/attendance/mark_attendance.html
+   and your view uses: return render(request, 'attendance/mark_attendance.html', {...})
+-->
+<h2>Mark Your Attendance</h2>
+<form method="POST">
+  {% csrf_token %}
+  <button type="submit">Mark Attendance</button>
+</form>
